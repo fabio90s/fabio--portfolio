@@ -1,0 +1,17 @@
+{% extends 'blog/blog_base.html' %}
+{% load static %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container">
+  <form class="" method="post">
+    {% csrf_token %}
+    {{form|bootstrap}}
+    {{form.media}}
+    <input class="mt-2" type="submit" name="" value="Submit">
+  </form>
+
+</div>
+
+{% endblock %}

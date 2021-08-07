@@ -1,0 +1,29 @@
+<!-- {% load static %} -->
+<nav class="navbar navbar-expand-lg  navbar--theme fabio--navbar  stroke" style="font-size: 20px; ">
+  <ul class=" socials list-inline mb-0" style="display: inline-flex !important; align-items: center;">
+    <a href="https://www.facebook.com/r.riven/" target="_blank"><i class="bi bi-facebook text-white"></i></a>
+    <a href="#"><i class="bi bi-linkedin text-white"></i></a>
+    <a href="mailto:fabivs9@gmail.com" target="_blank"><i class="bi bi-envelope text-white"></i></a>
+  </ul>
+  <button class=" navbar-light  navbar-toggler ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse navbar--text" id="navbarNav">
+    <ul class="navbar-nav ms-auto" style="display: inline-flex !important; align-items: center; font-size: 15px;">
+      <li class="nav-item">
+        <a class="nav-link active navbar--center" aria-current="page" href="{% url 'blog:bloglist' %}">ABOUT ME</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link active" href="/#portfolio">PORTFOLIO</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/#contact">CONTACT ME</a>
+      </li>
+      {% if user.is_staff %}
+      <li class=" nav-item">
+        <a class="nav-link active" href="{% url 'admin:logout' %}">LOG OUT</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

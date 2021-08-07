@@ -1,0 +1,14 @@
+{% extends 'blog/blog_base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+<div class="content d-flex justify-content-center">
+  <form class="" method="post">
+    <h3 class="mt-5">Are you sure you want to delete it?</h3>
+    {% csrf_token %}
+    <input class="btn btn-warning" type="submit" name="" value="Yes">
+    <a class="btn btn-primary" href="{% url 'blog:viewarticle' article.pk %}">No</a>
+  </form>
+</div>
+
+{% endblock %}

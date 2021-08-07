@@ -1,0 +1,13 @@
+{% extends 'blog/blog_base.html' %}
+{% block content %}
+{% load bootstrap %}
+
+<div class="container d-flex justify-content-center mt-2 mb-2">
+  <form class="" method="post" enctype="multipart/form-data">
+    {{ form|bootstrap }}
+    {{form.media}}
+    {% csrf_token %}
+    <input type="submit" name="" value="Submit">
+  </form>
+</div>
+{% endblock %}

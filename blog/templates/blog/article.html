@@ -1,0 +1,51 @@
+{% extends 'blog/blog_base.html' %}
+{% load bootstrap %}
+{% block content %}
+<div class="container text-center mt-5 text-break">
+
+  <h3>{{articles.title}}</h3>
+  {% if not articles.likes %}
+  <small>Published on {{articles.created_date}} by {{articles.author}}</small>
+  {% else %}
+  <small>Published on {{articles.created_date}} by {{articles.author}} - {{articles.likes}} like{{articles.likes|pluralize:"s"}}</small>
+  {% endif %}
+  <br>
+  <img class="article--image  mt-5 mb-5" src="{{articles.image.url}}" alt="">
+  <br>
+  {{articles.body|safe}}
+  {% if user.id == articles.author.id %}
+  <div class="">
+    <a class="btn btn-warning" href="{% url 'blog:edit-article' articles.pk %}">Edit</a>
+    <a class="btn btn-danger" href="{% url 'blog:delete-article' articles.pk %}">Delete</a>
+  </div>
+
+  {% endif %}
+</div>
+
+<!-- LIKE BUTTON -->
+<!-- <form class="" method="post">
+
+  {% for like in form %}
+  {% csrf_token %}
+  <i onclick="likeButton(this)" class="bi bi-hand-thumbs-up"></i>
+  {% endfor %} -->
+<!-- <input type="submit" name="" value="submit">
+</form> -->
+<div class="container article--section--two">
+  <hr>
+  <h1>Comments</h1>
+  <form class="" method="post">
+    {% csrf_token %}
+    {{form.media}}
+    {{form|bootstrap}}
+    <input type="submit" name="" value="Submit">
+  </form>
+  {% for comment in articles.comments_set.all %}
+  <div class="container">
+    <hr>
+    <p class="">From <strong>{{comment.name}}</strong> posted on <small>{{comment.created_date}}</small></p>
+    <p>Comment: {{comment.comment|safe}}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
