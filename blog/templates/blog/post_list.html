@@ -75,9 +75,10 @@
                 <a href={{item.url}}>{{item.name|safe}}
                 </a>
               </h4>
-              <p class="">
-                {{item.description|safe|slice:"0:150"}}...
-              </p>
+              {% if item.description %}
+              <span class="project--body">{{item.description|safe|slice:"0:150"}}...</span>
+              {% endif %}
+              <br>
               {% for tag in item.tags.all %}
               <span class="badge rounded-pill text-dark" style="background-color: #aaacad;">{{tag}}</span>
               {% endfor %}
@@ -121,7 +122,7 @@
                 <br>
               </div>
               <div class="article--info">
-                <span class="article--body">{{article.description|safe}}...</span>
+                <span class="article--body">{{article.description|safe|slice:"0:150"}}...</span>
               </div>
             </div>
 

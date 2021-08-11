@@ -376,6 +376,11 @@ align-items: center;
   text-decoration: none;
 }
 
+.project--body{
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
 @media (min-width: 320px) and (max-width: 1024px){
   .propic{
     width: 150px;
