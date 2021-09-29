@@ -1,167 +1,254 @@
-{% extends 'blog/blog_base.html' %}
-{% block content %}
-{% load static %}
-{% load bootstrap %}
+{% extends 'blog/blog_base.html' %} {% block content %} {% load static %} {%
+load bootstrap %}
 
 <section class="main--section">
-  {% for message in messages %}
-  <div class="alert alert-success alert-dismissible fade show d-flex align-self-start" role="alert">
-    {{message}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  {% endfor %}
-  <div class="first--section d-flex justify-content-center">
-    <div class="media flex-column flex-md-row intro--section col col-md-7 col-sm-4">
-      {% for post in posts %}
-      <div class="text-center">
-        {% if post.propic %}
-        <img class="img-thumbnail rounded-circle mb-2" style="height: 250px; width: 250px; max-width: 250px; flex-shrink: 0; image-rendering: -webkit-optimize-contrast;" src=" {{post.propic.url}}">
-        <i class="bi bi-geo-alt">{{ post.location}}</i>
+	{% for message in messages %}
+	<div
+		class="
+			alert alert-success alert-dismissible
+			fade
+			show
+			d-flex
+			align-self-start
+		"
+		role="alert"
+	>
+		{{message}}
+		<button
+			type="button"
+			class="btn-close"
+			data-bs-dismiss="alert"
+			aria-label="Close"
+		></button>
+	</div>
+	{% endfor %}
+	<div class="first--section d-flex justify-content-center">
+		<div
+			class="media flex-column flex-md-row intro--section col col-md-7 col-sm-4"
+		>
+			{% for post in posts %}
+			<div class="text-center">
+				{% if post.propic %}
+				<img
+					class="img-thumbnail rounded-circle mb-2"
+					style="
+						height: 250px;
+						width: 250px;
+						max-width: 250px;
+						flex-shrink: 0;
+						image-rendering: -webkit-optimize-contrast;
+					"
+					src=" {{post.propic.url}}"
+				/>
+				<i class="bi bi-geo-alt">{{ post.location}}</i>
 
-        {% endif %}
-      </div>
-      <div class="me-auto media-body text-center text-md-start post--text">
-        <p class="">{{ post.text|safe }}</p>
-        {% if user.id == post.name.id %}
-        <a class="btn btn-info ciao" href=" {% url 'blog:blogupdate' pk=post.pk %}" role="button">Modify</a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  {% endfor %}
+				{% endif %}
+			</div>
+			<div class="me-auto media-body text-center text-md-start post--text">
+				<p class="">{{ post.text|safe }}</p>
+				{% if user.id == post.name.id %}
+				<a
+					class="btn btn-info ciao"
+					href=" {% url 'blog:blogupdate' pk=post.pk %}"
+					role="button"
+					>Modify</a
+				>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
 </section>
 
 <section class="skills--section p-5" style="">
-  <div class="detail-content container">
-    <h1 class="text-center p-2">My Skills</h1>
-    <ul class="tool-list">
-      {% for skill in topSkills|slice:"0:4" %}
-      <div class="specific--skill p-3">
-        <li>
-          <svg width="200" height="200" viewbox="0 0 100 100">
-            <circle cx="50" cy="50" r="45"></circle>
-            <circle class="cbar" cx="50" cy="50" r="45" style="--percent: 0.{{skill.level}}">
-            </circle>
-          </svg>
-          <span class=" tl-name">{{skill.skill}}</span>
-          <span class="tl-exp">{{skill.level}}%</span>
-        </li>
-        {{skill.description|safe}}
-      </div>
-      {% endfor %}
-    </ul>
-  </div>
-  <h3 class="text-center p-2">Other Skills</h3>
-  <div class="other--skills d-flex justify-content-center">
-    {% for skill in otherSkills %}
-    <span class="badge rounded-pill skill--badge me-2" style="font-size: 20px;">
-      {{skill}}
-    </span>
-    {% endfor %}
-  </div>
+	<div class="detail-content container">
+		<h1 class="text-center p-2">My Skills</h1>
+		<ul class="tool-list">
+			{% for skill in topSkills|slice:"0:4" %}
+			<div class="specific--skill p-3">
+				<li>
+					<svg width="200" height="200" viewbox="0 0 100 100">
+						<circle cx="50" cy="50" r="45"></circle>
+						<circle
+							class="cbar"
+							cx="50"
+							cy="50"
+							r="45"
+							style="--percent: 0.{{skill.level}}"
+						></circle>
+					</svg>
+					<span class="tl-name">{{skill.skill}}</span>
+					<span class="tl-exp">{{skill.level}}%</span>
+				</li>
+				{{skill.description|safe}}
+			</div>
+			{% endfor %}
+		</ul>
+	</div>
+	<h3 class="text-center p-2">Other Skills</h3>
+	<div class="other--skills d-flex justify-content-center">
+		{% for skill in otherSkills %}
+		<span class="badge rounded-pill skill--badge me-2" style="font-size: 20px">
+			{{skill}}
+		</span>
+		{% endfor %}
+	</div>
 </section>
 
-<section id="portfolio" class="wrapper project--section p-5" style="scroll-behavior: auto; background-color: #f7f8fa;">
-  <div class="content">
-    <div class="container">
-      <h1 class="text-center  mb-5">My Projects</h1>
-      <div class="row d-flex justify-content-center">
-        {% for item in project %}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-2">
-          <div class="p-card">
-            <a class="p-img-card" href={{item.url}}><img src={{item.image.url}} /></a>
-            <div class="p-card-content">
-              <h4 class="p-card-title">
-                <a href={{item.url}}>{{item.name|safe}}
-                </a>
-              </h4>
-              {% if item.description %}
-              <span class="project--body">{{item.description|safe|slice:"0:150"}}...</span>
-              {% endif %}
-              <br>
-              {% for tag in item.tags.all %}
-              <span class="badge rounded-pill text-dark" style="background-color: #aaacad;">{{tag}}</span>
-              {% endfor %}
-            </div>
-            <div class="p-card-read-more">
-              <a href={{item.url}} class="btn btn-link btn-block">
-                See more
-              </a>
-              {% if request.user.id == item.author.id %}
-              <a href="{% url 'portfolio:siteupdate' item.pk %}"><i class="bi bi-pencil"></i> </a>
-              <a href="{% url 'portfolio:sitedelete' item.pk %}"><i class="bi bi-trash"></i> </a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      {% if request.user.is_authenticated %}
-      <a class="d-flex justify-content-center mt-5" href="{% url 'portfolio:sitecreate' %}"><button class="btn btn-primary" type="button" name="button">New Post</button></a>
-      {% endif %}
-    </div>
-  </div>
+<section
+	id="portfolio"
+	class="wrapper project--section p-5"
+	style="scroll-behavior: auto; background-color: #f7f8fa"
+>
+	<div class="content">
+		<div class="container">
+			<h1 class="text-center mb-5">My Projects</h1>
+			<div class="row d-flex justify-content-center">
+				{% for item in project %}
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-2">
+					<div class="p-card">
+						<a target="_blank" rel="noreferrer" class="p-img-card" href="{{item.url}}"
+							><img src="{{item.image.url}}"
+						/></a>
+						<div class="p-card-content">
+							<h4 class="p-card-title">
+								<a target="_blank" rel="noreferrer" href="{{item.url}}">{{item.name|safe}} </a>
+							</h4>
+							{% if item.description %}
+							<span class="project--body"
+								>{{item.description|safe|slice:"0:150"}}...</span
+							>
+							{% endif %}
+							<br />
+							{% for tag in item.tags.all %}
+							<span
+								class="badge rounded-pill text-dark"
+								style="background-color: #aaacad"
+								>{{tag}}</span
+							>
+							{% endfor %}
+						</div>
+						<div class="p-card-read-more">
+							<a href="{{item.url}}" class="btn btn-link btn-block">
+								See more
+							</a>
+							{% if request.user.id == item.author.id %}
+							<a href="{% url 'portfolio:siteupdate' item.pk %}"
+								><i class="bi bi-pencil"></i>
+							</a>
+							<a href="{% url 'portfolio:sitedelete' item.pk %}"
+								><i class="bi bi-trash"></i>
+							</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			{% if request.user.is_authenticated %}
+			<a
+				class="d-flex justify-content-center mt-5"
+				href="{% url 'portfolio:sitecreate' %}"
+				><button class="btn btn-primary" type="button" name="button">
+					New Post
+				</button></a
+			>
+			{% endif %}
+		</div>
+	</div>
 </section>
 
-<section class="wrapper posts--section position-relative p-2" style="scroll-behavior: auto;">
-  <div class="content">
-    <div class="container">
-      <h1 class="text-center p-2">My Posts</h1>
-      <div class="row d-flex justify-content-center">
-        {% for article in articles %}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3" data-aos="slide-right" data-aos-anchor-placement="center-bottom">
-          <div class="p-card">
-            <a class="p-img-card" href="{% url 'blog:viewarticle' article.pk %}"><img src={{article.image.url}} /></a>
-            <div class="p-card-content">
-              <h4 class="p-card-title">
-                <a href="{% url 'blog:viewarticle' article.pk %}">{{article.title|safe}}</a>
-              </h4>
-              <div class="article--info">
-                <small class="article--info--link">Posted on {{article.created_date|date:"F jS Y"}}<a href="{% url 'blog:viewarticle' article.pk %}"><i class="bi bi-chat"></i> {{article.comments_set.all.count}}
-                    Comment{{article.comments_set.all.count|pluralize:"s"}}</a></small>
-                <br>
-              </div>
-              <div class="article--info">
-                <span class="article--body">{{article.description|safe|slice:"0:150"}}...</span>
-              </div>
-            </div>
+<section
+	class="wrapper posts--section position-relative p-2"
+	style="scroll-behavior: auto"
+>
+	<div class="content">
+		<div class="container">
+			<h1 class="text-center p-2">My Posts</h1>
+			<div class="row d-flex justify-content-center">
+				{% for article in articles %}
+				<div
+					class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3"
+					data-aos="slide-right"
+					data-aos-anchor-placement="center-bottom"
+				>
+					<div class="p-card">
+						<a class="p-img-card" href="{% url 'blog:viewarticle' article.pk %}"
+							><img src="{{article.image.url}}"
+						/></a>
+						<div class="p-card-content">
+							<h4 class="p-card-title">
+								<a href="{% url 'blog:viewarticle' article.pk %}"
+									>{{article.title|safe}}</a
+								>
+							</h4>
+							<div class="article--info">
+								<small class="article--info--link"
+									>Posted on {{article.created_date|date:"F jS Y"}}<a
+										href="{% url 'blog:viewarticle' article.pk %}"
+										><i class="bi bi-chat"></i>
+										{{article.comments_set.all.count}}
+										Comment{{article.comments_set.all.count|pluralize:"s"}}</a
+									></small
+								>
+								<br />
+							</div>
+							<div class="article--info">
+								<span class="article--body"
+									>{{article.description|safe|slice:"0:150"}}...</span
+								>
+							</div>
+						</div>
 
-            <div class="p-card-read-more">
-              <a href="{% url 'blog:viewarticle' article.pk %}" class="btn btn-link btn-block">
-                Read More...
-              </a>
-              {% if request.user.id == article.author.id %}
-              <a href="{% url 'blog:edit-article' article.pk %}"><i class="bi bi-pencil"></i> </a>
-              <a href="{% url 'blog:delete-article' article.pk %}"><i class="bi bi-trash"></i> </a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-        {% if request.user.is_authenticated %}
-        <a class="d-flex justify-content-center" href="{% url 'blog:add-article' %}"><button class="btn btn-primary" type="button" name="button">New Post</button></a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+						<div class="p-card-read-more">
+							<a
+								href="{% url 'blog:viewarticle' article.pk %}"
+								class="btn btn-link btn-block"
+							>
+								Read More...
+							</a>
+							{% if request.user.id == article.author.id %}
+							<a href="{% url 'blog:edit-article' article.pk %}"
+								><i class="bi bi-pencil"></i>
+							</a>
+							<a href="{% url 'blog:delete-article' article.pk %}"
+								><i class="bi bi-trash"></i>
+							</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				{% endfor %} {% if request.user.is_authenticated %}
+				<a
+					class="d-flex justify-content-center"
+					href="{% url 'blog:add-article' %}"
+					><button class="btn btn-primary" type="button" name="button">
+						New Post
+					</button></a
+				>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 </section>
 
-<section id="contact" style="scroll-behavior: auto; background-color: #41a4f5 " class="p-5">
-  <div class="container d-flex justify-content-center">
-    <form class="contact--form" method="post">
-      <strong>
-        <h2 class="d-flex justify-content-center">Get in touch</h2>
-      </strong>
-      {% for field in form %}
-      {% csrf_token %}
-      <label for="">{{field.label}}</label>
-      {{field}}
-      {% endfor %}
-      <br>
-      <input type="submit" class='btn btn-primary' value="Submit">
-    </form>
-  </div>
+<section
+	id="contact"
+	style="scroll-behavior: auto; background-color: #41a4f5"
+	class="p-5"
+>
+	<div class="container d-flex justify-content-center">
+		<form class="contact--form" method="post">
+			<strong>
+				<h2 class="d-flex justify-content-center">Get in touch</h2>
+			</strong>
+			{% for field in form %} {% csrf_token %}
+			<label for="">{{field.label}}</label>
+			{{field}} {% endfor %}
+			<br />
+			<input type="submit" class="btn btn-primary" value="Submit" />
+		</form>
+	</div>
 </section>
-
 
 {% endblock %}
