@@ -17,7 +17,7 @@ class Items(models.Model):
 
     class Meta:
 
-        ordering = ['name']
+        ordering = ['created_date']
 
     def __str__(self):
         return self.name
