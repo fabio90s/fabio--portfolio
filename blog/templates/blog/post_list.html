@@ -1,5 +1,5 @@
-{% extends 'blog/blog_base.html' %} {% block content %} {% load static %} {%
-load bootstrap %}
+{% extends 'blog/blog_base.html' %} {% block content %} {% load static %} 
+{% load bootstrap %}
 
 <section class="main--section">
 	{% for message in messages %}
@@ -116,7 +116,7 @@ load bootstrap %}
 							</h4>
 							{% if item.description %}
 							<span class="project--body"
-								>{{item.description|safe|slice:"0:150"}}...</span
+								>{{item.description|safe}}...</span
 							>
 							{% endif %}
 							<br />
