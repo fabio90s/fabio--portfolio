@@ -78,7 +78,8 @@
 						></circle>
 					</svg>
 					<span class="tl-name">{{skill.skill}}</span>
-					<span class="tl-exp">{{skill.level}}%</span>
+					<span class="tl-exp"></span>
+					<!-- {{skill.level}}% -->
 				</li>
 				{{skill.description|safe}}
 			</div>
@@ -103,7 +104,7 @@
 	<div class="project-cards-content">
 		<div class="container">
 			<h1 class="text-center mb-5">My Projects</h1>
-			<div class="row d-flex justify-content-center">
+			<div class="row d-flex justify-content-center project-cards-content">
 				{% for item in project %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-2">
 					<div class="p-card">
