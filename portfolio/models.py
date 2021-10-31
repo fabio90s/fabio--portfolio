@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from blog.models import Skills
@@ -14,10 +15,12 @@ class Items(models.Model):
     image = models.ImageField(null=True, blank=True,
                               default='default-placeholder.png')
     tags = models.ManyToManyField(Skills, max_length=100, blank=True)
+    created_date = models.DateTimeField(default=timezone.now)
+
 
     class Meta:
 
-        ordering = ['created_date']
+        ordering = ['-created_date']
 
     def __str__(self):
         return self.name

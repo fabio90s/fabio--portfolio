@@ -1,5 +1,5 @@
 {% extends 'blog/blog_base.html' %} {% block content %} {% load static %} 
-{% load bootstrap %}
+{%load bootstrap %}
 
 <section class="main--section">
 	{% for message in messages %}
@@ -60,7 +60,7 @@
 	{% endfor %}
 </section>
 
-<section class="skills--section p-5" style="">
+<section class="skills--section p-5">
 	<div class="detail-content container">
 		<h1 class="text-center p-2">My Skills</h1>
 		<ul class="tool-list">
@@ -100,26 +100,31 @@
 	class="wrapper project--section p-5"
 	style="scroll-behavior: auto; background-color: #f7f8fa"
 >
-	<div class="content">
+	<div class="project-cards-content">
 		<div class="container">
 			<h1 class="text-center mb-5">My Projects</h1>
 			<div class="row d-flex justify-content-center">
 				{% for item in project %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-2">
 					<div class="p-card">
-						<a target="_blank" rel="noreferrer" class="p-img-card" href="{{item.url}}"
+						<a
+							target="_blank"
+							rel="noreferrer"
+							class="p-img-card"
+							href="{{item.url}}"
 							><img src="{{item.image.url}}"
 						/></a>
 						<div class="p-card-content">
 							<h4 class="p-card-title">
-								<a target="_blank" rel="noreferrer" href="{{item.url}}">{{item.name|safe}} </a>
+								<a target="_blank" rel="noreferrer" href="{{item.url}}"
+									>{{item.name|safe}}
+								</a>
 							</h4>
 							{% if item.description %}
-							<span class="project--body"
-								>{{item.description|safe}}...</span
-							>
+							<span class="project--body">{{item.description|safe}}</span>
 							{% endif %}
-							<br />
+						</div>
+						<div class="p-card-tags">
 							{% for tag in item.tags.all %}
 							<span
 								class="badge rounded-pill text-dark"
