@@ -1,5 +1,5 @@
-{% extends 'blog/blog_base.html' %} {% block content %} {% load static %} 
-{%load bootstrap %}
+{% extends 'blog/blog_base.html' %} {% block content %} {% load static %} {%load
+bootstrap %}
 
 <section class="main--section">
 	{% for message in messages %}
@@ -77,7 +77,7 @@
 							style="--percent: 0.{{skill.level}}"
 						></circle>
 					</svg>
-					<span class="tl-name">{{skill.skill}}</span>
+					<span class="tl-name"><strong>{{skill.skill|upper}}</strong></span>
 					<span class="tl-exp"></span>
 					<!-- {{skill.level}}% -->
 				</li>
@@ -135,7 +135,12 @@
 							{% endfor %}
 						</div>
 						<div class="p-card-read-more">
-							<a href="{{item.url}}" class="btn btn-link btn-block">
+							<a
+								target="_blank"
+								rel="noopener noreferrer"
+								href="{{item.url}}"
+								class="btn btn-link btn-block"
+							>
 								See more
 							</a>
 							{% if request.user.id == item.author.id %}
