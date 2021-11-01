@@ -87,12 +87,17 @@
 		</ul>
 	</div>
 	<h3 class="text-center p-2">Other Skills</h3>
-	<div class="other--skills d-flex justify-content-center">
-		{% for skill in otherSkills %}
-		<span class="badge rounded-pill skill--badge me-2" style="font-size: 20px">
-			{{skill}}
-		</span>
-		{% endfor %}
+	<div class="other--skills--container">
+		<div class="other--skills">
+			{% for skill in otherSkills %}
+			<span
+				class="badge rounded-pill skill--badge me-2"
+				style="font-size: 20px"
+			>
+				{{skill}}
+			</span>
+			{% endfor %}
+		</div>
 	</div>
 </section>
 
