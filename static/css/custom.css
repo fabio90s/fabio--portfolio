@@ -93,9 +93,9 @@ nav.stroke ul li a:hover:after {
 }
 
 .card-group {
-	margin: 0 auto; /* Added */
-	float: none; /* Added */
-	margin-bottom: 10px; /* Added */
+	margin: 0 auto; 
+	float: none; 
+	margin-bottom: 10px; 
 }
 
 .propic {
@@ -142,7 +142,7 @@ nav.stroke ul li a:hover:after {
 
 .other--skills {
 	display: flex;
-	gap: 0.5rem;
+	gap: 1rem;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 }
@@ -421,10 +421,3 @@ h1.heading {
 		margin: 0 0 0.3em;
 	}
 }
-/* 
-.tool-list {
-  flex-wrap: wrap;
-}
-.tool-list > .specific--skill > li {
-  flex: 0 0 33.33%;
-} */
