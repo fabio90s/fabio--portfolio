@@ -40,7 +40,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # Application definition
 
 GOOGLE_ANALYTICS = {
-    'google_analytics_id': os.environ.get('GA'),
+    'google_analytics_id': os.environ.get('G_A'),
 }
 
 INSTALLED_APPS = [

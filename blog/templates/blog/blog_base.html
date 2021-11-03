@@ -2,11 +2,6 @@
 {% load static %} {% load bootstrap %}
 
 <html lang="en" dir="ltr">
-	<!-- {% load google_analytics_tags %}
-	<div style="display: none">
-		<img src="{% google_analytics %}" width="0" height="0" />
-	</div> -->
-
 	<head>
 		<meta charset="utf-8" />
 		<title>Fabio Catino - Developer</title>
@@ -39,5 +34,9 @@
 		<script>
 			AOS.init();
 		</script>
+		{% load google_analytics_tags %}
+		<div style="display: none">
+			<img src="{% google_analytics %}" width="0" height="0" />
+		</div>
 	</body>
 </html>
