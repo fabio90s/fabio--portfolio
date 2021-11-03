@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls.conf import re_path
 
 
 urlpatterns = [
@@ -24,7 +25,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('djga/', include('google_analytics.urls')),
+    re_path('djga/', include('google_analytics.urls')),
 
 
 ]
