@@ -39,6 +39,10 @@ EMAIL_HOST_USER = 'fabivs9@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # Application definition
 
+GOOGLE_ANALYTICS = {
+    'google_analytics_id': os.environ.get('GA'),
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +58,7 @@ INSTALLED_APPS = [
     'whitenoise',
     'gunicorn',
     'storages',
+    'google_analytics',
 
 ]
 
